@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import html
 import json
+import importlib.util
 from pathlib import Path
 
 import numpy as np
@@ -601,7 +602,23 @@ elif page == MENU[4]:
             "More examples or iterations increase computing work, "
             "but do not guarantee that the learned strategy will win."
         )
-    if st.button("Run the simulated strategy test", type="primary"):
+    training_available = importlib.util.find_spec("d3rlpy") is not None
+    if not training_available:
+        st.info(
+            "This public website is optimized for fast viewing. Full deep-learning "
+            "training runs in the GitHub Codespace, which has additional model libraries. "
+            "After training, publish the generated report to display its results here."
+        )
+        st.markdown(
+            "[Open the Inkasso development repository]"
+            "(https://github.com/botsandbolts/Inkasso)"
+        )
+    if st.button(
+        "Run the simulated strategy test",
+        type="primary",
+        disabled=not training_available,
+        help="Use the Inkasso Codespace to train the AI" if not training_available else None,
+    ):
         with st.spinner("Training on fictional customer journeys and testing all four approaches..."):
             try:
                 from inkasso.experiment import run_experiment
