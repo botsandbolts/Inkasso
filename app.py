@@ -303,11 +303,12 @@ elif page == MENU[2]:
     selection = st.selectbox("Choose a fictional account", options=id_list,
                              format_func=lambda account: f"Account {account}")
     chosen = options.loc[options.account_id.astype(str).eq(selection)].iloc[0]
-    identity = (str(selection), int(seed))
+    identity = (str(selection), int(seed), int(size), str(source))
     if st.session_state.get("case_identity") != identity:
         st.session_state.case_identity = identity
         st.session_state.case_environment = CollectionEnv(chosen.to_dict(), seed=int(seed) + 701)
         st.session_state.case_history = []
+        st.session_state.pop("chosen_action", None)
     env = st.session_state.case_environment
 
     c1, c2, c3, c4 = st.columns(4)
