@@ -499,8 +499,16 @@ elif page == MENU[4]:
         with col:
             card(*item)
 
-    path = Path("outputs/metrics.csv")
-    meta_file = Path("outputs/metadata.json")
+    # A published, reviewed simulator report can be committed separately
+    # from the training environment. The hosted app is read-only.
+    local_metrics = Path("outputs/metrics.csv")
+    local_metadata = Path("outputs/metadata.json")
+    published_metrics = Path("reports/latest/metrics.csv")
+    published_metadata = Path("reports/latest/metadata.json")
+    if local_metrics.exists() and local_metadata.exists():
+        path, meta_file = local_metrics, local_metadata
+    else:
+        path, meta_file = published_metrics, published_metadata
     if path.exists() and meta_file.exists():
         try:
             results = pd.read_csv(path)
