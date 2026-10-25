@@ -4,6 +4,16 @@ A business-friendly **Streamlit dashboard** and an educational, reproducible **d
 
 > **Important:** This is simulation research, **not** a validated debt-collection decision system. [OpenAR](https://github.com/OpenAR-Collective/simple-mock-collections-data-generator) generates synthetic debt accounts and payment records, but **does not establish causal action-response effects**. Therefore the prototype trains CQL on **explicitly hypothetical interactions** sampled from a separate simulator, using OpenAR only as the starting profile distribution.
 
+## GitHub Codespaces: automatic launch
+
+When you **create or start an Inkasso Codespace**, the development-container configuration installs dependencies during creation, runs `bash scripts/start_dashboard.sh` on startup, forwards port **8501**, and requests an automatic **Preview in Editor** for the Streamlit dashboard.
+
+**Create your Codespace:** [Inkasso Codespaces creation](https://github.com/codespaces/new?repo=botsandbolts/Inkasso).
+
+If your Codespace was created *before* this setting was added, pull the latest `main` and run **Codespaces: Rebuild Container** from the VS Code Command Palette to apply the updated development-container configuration. GitHub's client may require you to click the preview if the automatic preview is blocked. The log is `/tmp/inkasso-streamlit.log`.
+
+**Note:** Starting or creating a Codespace still requires opening it in GitHub; this configuration automates the dashboard *inside* the running Codespace, not creation or start of a stopped Codespace.
+
 ## Start the dashboard
 
 Python 3.11 recommended.
