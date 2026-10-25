@@ -14,6 +14,21 @@ If your Codespace was created *before* this setting was added, pull the latest `
 
 **Note:** Starting or creating a Codespace still requires opening it in GitHub; this configuration automates the dashboard *inside* the running Codespace, not creation or start of a stopped Codespace.
 
+## New guided business presentation (six screens)
+
+The Streamlit homepage is now designed for managers, clients and recruiters rather than primarily data scientists:
+
+1. **Start here** — The business problem, from portfolio to action to learning to outcomes.
+2. **Understand the portfolio** — Plain-language KPIs, balance distribution, contact reachability and why they matter for decisions.
+3. **Try a collection decision** — Follow one fictional account week by week; choose an allowed contact action and see its *simulated* consequences.
+4. **How the AI learns** — A visual four-stage loop, prediction vs sequential decision-making and an accessible explanation of Conservative Q-Learning.
+5. **Compare strategies** — Contrast waiting, fixed contact rules, random permitted actions and an AI-learned strategy; clearly label any outputs as **simulation-only**. Training can be started here.
+6. **Trust, data & definitions** — What the numbers mean, what the simulator assumes, restrictions and a plain-English glossary.
+
+Use the **left sidebar** to move between the screens. Click **Portfolio settings** to inspect a different sample. By default, the app works with entirely fictional fallback profiles even if OpenAR has not been downloaded.
+
+This is **not a live collections tool**. No direct consumer outreach exists, no improvement is fabricated before running a training experiment, and the contact-response simulator is not fitted to real causal outcomes.
+
 ## Start the dashboard
 
 Python 3.11 recommended.
