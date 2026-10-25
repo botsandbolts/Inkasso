@@ -1,0 +1,4 @@
+# Optional development/experiment dependencies for Codespaces or local training.
+-r requirements.txt
+d3rlpy>=2.5,<3
+pytest>=8,<10
