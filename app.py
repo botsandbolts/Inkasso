@@ -693,6 +693,26 @@ else:
         "results must not be sold as measured real-world impact."
     )
 
+def jump_to(target: int) -> None:
+    """Change sidebar navigation before the next Streamlit rerun."""
+    st.session_state.page = MENU[target]
+
+
+st.markdown("### Continue the story")
+previous_col, next_col = st.columns(2)
+with previous_col:
+    if position > 1:
+        st.button(
+            "← " + MENU[position - 2].split(" · ", 1)[1],
+            on_click=jump_to, args=(position - 2,), use_container_width=True,
+        )
+with next_col:
+    if position < len(MENU):
+        st.button(
+            MENU[position].split(" · ", 1)[1] + " →",
+            type="primary", on_click=jump_to, args=(position,), use_container_width=True,
+        )
+
 st.divider()
 st.caption(
     "INKASSO DECISION LAB  ·  Business demonstration  ·  Synthetic cases only  ·  "
