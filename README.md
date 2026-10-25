@@ -29,6 +29,34 @@ Use the **left sidebar** to move between the screens. Click **Portfolio settings
 
 This is **not a live collections tool**. No direct consumer outreach exists, no improvement is fabricated before running a training experiment, and the contact-response simulator is not fitted to real causal outcomes.
 
+## Publish Inkasso as a standalone website (no Codespace required to view)
+
+Use **[Streamlit Community Cloud](https://share.streamlit.io/)** to publish this public GitHub repository with a stable shareable `*.streamlit.app` URL.
+
+1. Sign in to [Streamlit Community Cloud](https://share.streamlit.io/) using your GitHub account `botsandbolts` and authorize it to read the Inkasso repository.
+2. Click **Create app → Yup, I have an app**.
+3. Set **Repository:** `botsandbolts/Inkasso`, **Branch:** `main`, **Main file path:** `app.py`.
+4. Optionally choose a memorable **App URL** subdomain (subject to availability). Under **Advanced settings**, choose **Python 3.11**.
+5. Click **Deploy**. The service installs `requirements.txt` and presents the six-screen business app at its own public URL. Share that actual URL after deployment; do not infer it from the repository name.
+
+**Hosting behavior:** Unlike a GitHub Codespace, the URL stays the same across visits and you do not need to run a terminal to open the app. On the free Community Cloud tier, apps with no visitors for 12 hours can hibernate, requiring visitors to wake them. GitHub commits update the deployed application automatically. All account data shown are synthetic.
+
+**Keeping the site lightweight:** `requirements.txt` installs only the website's presentation dependencies. For a reproducible Discrete CQL experiment in Codespaces, install `requirements-train.txt` instead (the devcontainer is already configured to do so). The hosted website intentionally disables expensive model training. The live interactive customer journey still works.
+
+### Publish real *simulated* comparison results
+
+In a Codespace with the training dependencies installed:
+
+```bash
+python -m inkasso.experiment --data-dir data/openar --episodes 700 --steps 1500 --seed 42
+bash scripts/publish_report.sh
+git diff --cached -- reports/latest
+git commit -m "Publish simulated policy comparison"
+git push origin main
+```
+
+The publication helper stages **only aggregate simulation scorecards and simulator metadata** in `reports/latest/`. The hosted app automatically displays that scorecard once it is committed. It never presents assumed simulation gains as validated, real-world causal improvements. These reports do not exist until someone has successfully trained and published them.
+
 ## Start the dashboard
 
 Python 3.11 recommended.
